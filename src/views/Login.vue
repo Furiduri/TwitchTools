@@ -121,7 +121,7 @@ const Login = () => {
   signInWithEmailAndPassword(getAuth(), email.value, password.value)
     .then(() => {
       console.log("Ingreso echo!");
-      router.push("/");
+      router.push("/cpanel");
     })
     .catch((error) => {
       //   console.log(error);
@@ -140,7 +140,7 @@ const LoginByGoogle = () => {
   const provider = new GoogleAuthProvider();
   signInWithPopup(getAuth(), provider)
     .then(() => {
-      router.push("/");
+      router.push("/cpanel");
     })
     .catch((error) => {
       console.log(error);

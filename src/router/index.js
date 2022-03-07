@@ -5,33 +5,55 @@ import {
 
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
-const routes = [{
+
+const routes = [
+  {
     path: '/',
-    name: 'Home',
-    component: () => import('../views/Home.vue'),
-  },
+    component: () => import('../AppNavbar.vue'),
+    children: [
+      {
+        path: '/',
+        name: 'Home',
+        component: () => import('../views/Home.vue'),
+      },
+      {
+        path: '/about',
+        name: 'About',
+        component: () => import('../views/About.vue')
+      },
+      {
+        path: '/login',
+        name: 'Login',
+        component: () => import('../views/Login.vue')
+      },
+      {
+        path: '/register',
+        name: 'Register',
+        component: () => import('../views/Register.vue')
+      },
+      {
+        path: '/cpanel',
+        name: 'CPanel',
+        component: () => import('../views/CPanel.vue'),
+        meta: {
+          auth: true
+        }
+      },
+    ]
+  },  
   {
-    path: '/about',
-    name: 'About',
-    component: () => import('../views/About.vue')
-  },
-  {
-    path: '/login',
-    name: 'Login',
-    component: () => import('../views/Login.vue')
-  },
-  {
-    path: '/register',
-    name: 'Register',
-    component: () => import('../views/Register.vue')
-  },
-  {
-    path: '/cpanel',
-    name: 'CPanel',
-    component: () => import('../views/CPanel.vue'),
-    meta: {
-      auth: true
-    }
+    path: '/',
+    component: () => import('../AppClean.vue'),
+    children: [
+      {
+        path: '/chat/:chanel',
+        name: 'Chat',
+        component: () => import('../views/Chat.vue'),
+        meta:{
+          navbar: false,
+        }
+      },
+    ]
   },
 ]
 
@@ -57,7 +79,7 @@ router.beforeEach(async(to, from, next) =>{
     if(await getCurrentUser()){
       next();
     }else{
-      console.log("No tienes permisos para la paguina");
+      console.log("No tienes permisos para la pagina");
       next("/login");
     }
   }else{

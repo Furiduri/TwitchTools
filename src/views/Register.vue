@@ -142,7 +142,7 @@ const Register = () => {
       createUserWithEmailAndPassword(getAuth(), email.value, password.value)
         .then((res) => {
           console.log("Registro echo!", res);
-          router.push("/");
+          router.push("/cpanel");
         })
         .catch((error) => {
           console.log(error.code);
@@ -159,7 +159,7 @@ const RegisterByGoogle = () => {
   const provider = new GoogleAuthProvider();
   signInWithPopup(getAuth(), provider)
     .then(() => {
-      router.push("/");
+      router.push("/cpanel");
     })
     .catch((error) => {
       console.log(error.code);
