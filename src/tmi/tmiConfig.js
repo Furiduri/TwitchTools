@@ -1,5 +1,4 @@
-import FirePaths  from "../DB/FirePaths";
-import FireDB  from "../DB/FireDB";
+import DBUserInfo from '../DB/DBUserInfo'
 
 let tmiConfig = {
         options: { debug: true, messagesLogLevel: "info" },
@@ -14,9 +13,10 @@ let tmiConfig = {
         channels: [  ]    
 };
 const tmiManager = {
-    Get: async () =>{
-        let data = await FireDB.Get(FirePaths.UserInfo);
-        tmiConfig = data;
+    Get: async (userID = null) =>{
+        let data = await DBUserInfo.GetInfoTMI(userID);
+        if(typeof data != "undefined")
+            tmiConfig = data;
        return tmiConfig;
     }
 };

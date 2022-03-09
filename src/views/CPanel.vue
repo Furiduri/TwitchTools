@@ -1,14 +1,17 @@
 <template>
     <div class="column is-10-desktop m-auto">
         <div class="box">
-            <div class="level">
-                <div class="level-left">
+            <div class="columns">
+                <div class="column">
                     <h1>Panel de Control</h1>
+                </div>
+                <div class="column">
+                    <FormUser />
                 </div>                
             </div>
             <hr>
             <div class="content">
-                <FormUser />
+                
             </div>
         </div>
     </div>

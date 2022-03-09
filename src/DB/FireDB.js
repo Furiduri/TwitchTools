@@ -1,23 +1,25 @@
-import { doc, setDoc, getDoc  } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
-import { db } from "../main";
-const UserID = getAuth().currentUser.uid;
+import {setDoc, getDoc  } from "firebase/firestore";
 const FireDB = {
-    async Get(path){
+    async Get(collectionRef){
       try {
-        return await (await getDoc(doc(db, UserID, path))).data();        
+        const res = await getDoc(collectionRef);    
+        if(res.exists()){
+          return res.data();
+        }else{          
+          return undefined;
+        }        
       } catch (ex) {
         console.error(ex);
       }
     },
-    async Add( path, data ){
-        return  await setDoc(doc(db, UserID , path), data)
-          .then(() => {
-            console.log("Documento añadido");
-          })
-          .catch(function(ex) {
-            console.error("Error al añadir el documento: ", ex);
-          });
+    async Set(collectionRef, data ){
+      try {
+        await setDoc(collectionRef, data);
+        return true;
+      } catch (ex) {
+        console.error(ex);
+        return false;
+      }  
     },
 };
 
