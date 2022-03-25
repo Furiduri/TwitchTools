@@ -4,56 +4,24 @@ import {
 } from 'vue-router'
 
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
-
+import rutesNavbar from './ViewsAppNavbar'
+import rutesClear from './ViewsAppClean'
 
 const routes = [
   {
     path: '/',
     component: () => import('../AppNavbar.vue'),
-    children: [
-      {
-        path: '/',
-        name: 'Home',
-        component: () => import('../views/Home.vue'),
-      },
-      {
-        path: '/about',
-        name: 'About',
-        component: () => import('../views/About.vue')
-      },
-      {
-        path: '/login',
-        name: 'Login',
-        component: () => import('../views/Login.vue')
-      },
-      {
-        path: '/register',
-        name: 'Register',
-        component: () => import('../views/Register.vue')
-      },
-      {
-        path: '/cpanel',
-        name: 'CPanel',
-        component: () => import('../views/CPanel.vue'),
-        meta: {
-          auth: true
-        }
-      },
-    ]
+    children: rutesNavbar
   },  
   {
     path: '/',
     component: () => import('../AppClean.vue'),
-    children: [
-      {
-        path: '/chat/:chanel',
-        name: 'Chat',
-        component: () => import('../views/Chat.vue'),
-        meta:{
-          navbar: false,
-        }
-      },
-    ]
+    children: rutesClear
+  }, 
+  {
+    path: '/*',
+    name: 'NotFound',
+    component: () => import('../views/404.vue'),
   },
 ]
 

@@ -4,7 +4,9 @@
   <router-view/>
 </template>
 
+
 <style lang="scss">
+@import "assets/scss/main.scss";
   a {
     &.router-link-exact-active {
       color: #42b983 !important;
@@ -12,7 +14,10 @@
   }
 </style>
 
-<script setup>
+<script setup scoped>
+//CSS
+import 'bootstrap';
+
 import {onMounted, ref} from "vue";
 import {getAuth, onAuthStateChanged} from "firebase/auth";
 import { useRoute } from "vue-router";
@@ -21,6 +26,8 @@ import { useRoute } from "vue-router";
 import Navbar from "./components/Navbar.vue"
 const navbar = Navbar;
 import NavbarLogin from "./components/NavbarLogin.vue"
+
+
 
 const navbarLogin = NavbarLogin;
 //Variables

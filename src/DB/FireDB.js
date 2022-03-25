@@ -14,7 +14,7 @@ const FireDB = {
     },
     async Set(collectionRef, data ){
       try {
-        await setDoc(collectionRef, data);
+        await setDoc(collectionRef, data);        
         return true;
       } catch (ex) {
         console.error(ex);

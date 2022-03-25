@@ -5,10 +5,7 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 
-//CSS
-import './assets/scss/bulma.scss'
-import 'bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+//Fonts
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { fas } from '@fortawesome/free-solid-svg-icons'
@@ -37,12 +34,16 @@ initializeAppCheck(fireApp, {
 
 //CodeEditor
 import CodeEditor from 'simple-code-editor';  
+
+//VueShowdown markdown viewer
+import { VueShowdown } from 'vue-showdown';
 //Vue
 createApp(App)
     .use(store)
     .use(router)
     .component("Icon", FontAwesomeIcon)
     .component("CodeEdit", CodeEditor)
+    .component("VueShowdown", VueShowdown)
     .mount('#app');// eslint-disable-line no-unused-vars
 
 export {db};

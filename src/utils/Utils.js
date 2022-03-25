@@ -1,3 +1,7 @@
+import Modals_alerts from "./Modals_alerts";
+
+
+
 const Utils = {
     RegEmail: (email) => {
         var regexp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -51,6 +55,15 @@ const Utils = {
         var time = date.toLocaleString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, "$1").split(':');
         return time[0] + ':' + time[1];
     },
+    Copy: (text)=>{
+        navigator.clipboard.writeText(text)
+        .then(() => {
+            Modals_alerts.ToasMenssage("Texto Copeado");
+        })
+            .catch(err => {
+            console.log('Something went wrong', err);
+        });
+    }
 }
 
 export {

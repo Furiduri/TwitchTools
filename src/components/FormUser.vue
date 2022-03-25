@@ -31,7 +31,7 @@
     </div>
   </div>
   <div class="column" v-if="avanceEditor">   
-    <div class="content position-absolute">
+    <div class="content position-absolute" style="z-index: 1;">
       <CodeEdit v-model="tmiConfigString" class="github_dark"  :wrap_code="true" @change="SaveEditor"/>
     </div> 
   </div>
